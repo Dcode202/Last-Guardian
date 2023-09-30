@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlneewgiscih6"]
+
+[ext_resource type="Texture2D" uid="uid://da7ic8f48ygmv" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/float.png" id="1_vs3h0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxsqf"]
+size = Vector2(78.25, 18.25)
+
+[node name="moving_platform2" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0574744, 0.102764)
+texture = ExtResource("1_vs3h0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.125, -0.125)
+shape = SubResource("RectangleShape2D_oxsqf")

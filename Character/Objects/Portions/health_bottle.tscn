@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbp1q3m4alplw"]
+
+[ext_resource type="Script" path="res://Character/Objects/Portions/health_bottle.gd" id="1_86fwr"]
+[ext_resource type="Texture2D" uid="uid://b2fewn3frdea2" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/portion.png" id="2_sxp11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01xtt"]
+size = Vector2(9, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qspsl"]
+size = Vector2(7, 11)
+
+[node name="HealthBottle" type="Node2D" node_paths=PackedStringArray("opened", "closed")]
+script = ExtResource("1_86fwr")
+opened = NodePath("Open")
+closed = NodePath("Closed")
+
+[node name="Closed" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+scale = Vector2(0.221311, 0.25)
+texture = ExtResource("2_sxp11")
+hframes = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_01xtt")
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_qspsl")
+
+[node name="Open" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -2)
+scale = Vector2(0.221, 0.25)
+texture = ExtResource("2_sxp11")
+hframes = 5
+frame = 4
+
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://w3u0dpfcq04t"]
+
+[ext_resource type="Script" path="res://Character/Objects/Portions/Box.gd" id="1_cg53p"]
+[ext_resource type="PackedScene" uid="uid://cul2vfde4iuwe" path="res://Levels/level2_cutscene.tscn" id="2_e8fei"]
+[ext_resource type="Texture2D" uid="uid://55ie0wkwvpt5" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/closed.png" id="2_ki6b4"]
+[ext_resource type="Texture2D" uid="uid://bdps88o3dbncu" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/open.png" id="3_60nu2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye6tv"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6jnc"]
+size = Vector2(28, 28)
+
+[node name="Box" type="Node2D" node_paths=PackedStringArray("opened_box", "closed_box")]
+script = ExtResource("1_cg53p")
+opened_box = NodePath("Opened")
+closed_box = NodePath("Closed")
+sceneToLoad = ExtResource("2_e8fei")
+
+[node name="Closed" type="Sprite2D" parent="."]
+scale = Vector2(0.246094, 0.277778)
+texture = ExtResource("2_ki6b4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ye6tv")
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_p6jnc")
+
+[node name="Opened" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.333333, 0.344828)
+texture = ExtResource("3_60nu2")
+
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

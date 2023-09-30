@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0epja7joww8c"]
+
+[ext_resource type="AudioStream" uid="uid://cw3r4hvw5nrg7" path="res://bgMusic.wav" id="1_bx4t0"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_bx4t0")
+volume_db = -18.543
+autoplay = true
+max_distance = 4020.0

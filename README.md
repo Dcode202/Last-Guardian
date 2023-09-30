@@ -1,2 +1,0 @@
-# Last-Guardian
-Game Development
